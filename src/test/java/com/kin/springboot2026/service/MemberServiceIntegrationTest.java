@@ -30,7 +30,7 @@ class MemberServiceIntegrationTest {
     void 회원가입() {
         //given - 뭔가가 주어졌는데
         Member member = new Member();
-        member.setName("spring");
+        member.setName("spring99");
 
         //when - 이걸 실행했을때
         Long saveId = memberService.join(member);
@@ -44,10 +44,10 @@ class MemberServiceIntegrationTest {
     public void 중복_회원_예외(){
         //given
         Member member1 = new Member();
-        member1.setName("spring");
+        member1.setName("spring99");
 
         Member member2 = new Member();
-        member2.setName("spring");
+        member2.setName("spring99");
 
         //when
 

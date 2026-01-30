@@ -1,6 +1,7 @@
 package com.kin.springboot2026;
 
 import com.kin.springboot2026.repository.JdbcMemberRepository;
+import com.kin.springboot2026.repository.JdbcTemplateMemberRepository;
 import com.kin.springboot2026.repository.MemberRepository;
 import com.kin.springboot2026.repository.MemoryMemberRepository;
 import com.kin.springboot2026.service.MemberService;
@@ -17,7 +18,7 @@ public class SpringConfig {
 
     private DataSource dataSource;
 
-    @Autowired
+    @Autowired //datasource는 application.properties 파일의 db정보를 바탕으로 이미 컨테이너에서 객체로 가지고 있음.
     public SpringConfig(DataSource dataSource) {
         this.dataSource = dataSource;
     }
@@ -30,7 +31,8 @@ public class SpringConfig {
     @Bean
     public MemberRepository memberRepository() {
         //return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource);
+        //return new JdbcMemberRepository(dataSource);
+        return new JdbcTemplateMemberRepository(dataSource);
     }
 
 }
