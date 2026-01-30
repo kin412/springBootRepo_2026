@@ -3,14 +3,20 @@ package com.kin.springboot2026.service;
 import com.kin.springboot2026.domain.Member;
 import com.kin.springboot2026.repository.MemberRepository;
 import com.kin.springboot2026.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+//@Service
+//@Component
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    //@Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
