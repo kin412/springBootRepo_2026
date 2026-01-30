@@ -1,40 +1,36 @@
 package com.kin.springboot2026.service;
 
 import com.kin.springboot2026.domain.Member;
+import com.kin.springboot2026.repository.MemberRepository;
 import com.kin.springboot2026.repository.MemoryMemberRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+// 스프링 부트식 테스트
+@SpringBootTest // 스프링 컨테이너와 테스트를 함께 실행
+@Transactional // 테스트코드에서는 무조건 끝나고 롤백함
+class MemberServiceIntegrationTest {
 
-// legacy식? 테스트
-class MemberServiceTest {
-
+    @Autowired // 테스트는 결국 테스트하기만 하면 되는거라 번거롭게 생성자 주입 이런거 안하고 걍 필드주입함
     MemberService memberService;
-    MemoryMemberRepository memoryMemberRepository;
+    @Autowired
+    MemberRepository memoryMemberRepository;
 
-    @BeforeEach // 매 test가 시작되기전 memoryMemberRepository를 초기화
-    public void beforeEach() {
-        memoryMemberRepository = new MemoryMemberRepository();
-        memberService = new MemberService(memoryMemberRepository);
-    }
 
-    @AfterEach
-    public void afterEach() {
-        memoryMemberRepository.clearStore();
-    }
 
     //테스트 코드에서의 메서드명은 한글로 써도 되기도함
     @Test
     void 회원가입() {
         //given - 뭔가가 주어졌는데
         Member member = new Member();
-        member.setName("hello");
+        member.setName("spring");
 
         //when - 이걸 실행했을때
         Long saveId = memberService.join(member);
@@ -74,11 +70,4 @@ class MemberServiceTest {
         //then
     }
 
-    @Test
-    void findMembers() {
-    }
-
-    @Test
-    void findOne() {
-    }
 }
