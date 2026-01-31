@@ -1,5 +1,6 @@
 package com.kin.springboot2026;
 
+import com.kin.springboot2026.aop.TimeTraceAop;
 import com.kin.springboot2026.repository.*;
 import com.kin.springboot2026.service.MemberService;
 import jakarta.persistence.EntityManager;
@@ -60,5 +61,10 @@ public class SpringConfig {
     public SpringConfig(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
+
+    /*@Bean
+    public TimeTraceAop timeTraceAop() {
+        return new TimeTraceAop();
+    }*/
 
 }
